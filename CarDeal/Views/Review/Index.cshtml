@@ -1,0 +1,64 @@
+﻿@using Microsoft.AspNetCore.Identity;
+@using CarDeal.Data;
+@using CarDeal.Models.DTOs;
+@model List<ReviewDTO>
+@inject SignInManager<User> signinManager;
+
+@{
+    ViewData["Title"] = "Index";
+}
+<h1>Index</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                <strong>Name</strong>
+            </th>
+            <th>
+                <strong>Describtion</strong>
+            </th>
+            <th>
+                <strong>Stars</strong>
+            </th>
+            <th>
+                <strong>Publish</strong>
+            </th>
+            
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Describtion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Stars)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Publish)
+                </td>
+               
+                <td>
+                    <a class="btn btn-outline-warning" asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a class="btn btn-outline-info" asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                    <a class="btn btn-outline-danger" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+@if (this.signinManager.IsSignedIn(User))
+{
+    <a class="btn btn-outline-primary" asp-area="" asp-controller="Review" asp-action="Create">Create review</a>
+}
+else
+{
+    <p>Login to create a review</p>
+    <a class="btn btn-primary" asp-controller="Account" asp-action="Login">Login</a>
+}

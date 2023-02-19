@@ -1,0 +1,59 @@
+﻿@using Microsoft.AspNetCore.Identity;
+@using CarDeal.Data;
+@using CarDeal.Models.DTOs;
+@model List<ReviewDTO>
+@inject SignInManager<User> signinManager;
+
+@{
+    ViewData["Title"] = "SortName";
+}
+<h1>These are the reviews sorted by Name </h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                <a class="btn btn-group-lg" asp-action="SortNameDesc"> <strong> Name  </strong> </a>
+            </th>
+            <th>
+                <a class="btn btn-group-lg" asp-action="SortDescribtionDesc"> <strong>Describtion</strong> </a>
+            </th>
+            <th>
+                <a class="btn btn-group-lg" asp-action="SortStarsDesc"> <strong>Stars</strong> </a>
+            </th>
+            <th>
+                <a class="btn btn-group-lg" asp-action="SortPublishDesc"> <strong>Publish</strong> </a>
+            </th>
+           
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Describtion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Stars)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Publish)
+                </td>
+             
+            </tr>
+        }
+    </tbody>
+</table>
+@if (this.signinManager.IsSignedIn(User))
+{
+    <a class="btn btn-outline-dark" asp-area="" asp-controller="Review" asp-action="UserReviews">Back to List</a>
+}
+else
+{
+    <p>Login to create a review</p>
+    <a class="btn btn-primary" asp-controller="Account" asp-action="Login">Login</a>
+}

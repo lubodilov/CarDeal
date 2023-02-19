@@ -11,7 +11,7 @@ namespace CarDeal.Data
 {
     public class UserDbContext : IdentityDbContext<User, IdentityRole<int>, int>
     {
-        //public DbSet<ToDo> ToDoes { get; set; }
+        public DbSet<Review> Reviews { get; set; }
         public UserDbContext(DbContextOptions options) : base(options)
         {
 
