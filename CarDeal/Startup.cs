@@ -32,6 +32,7 @@ namespace CarDeal
             services.AddRazorPages();
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IReviewService, ReviewService>();
+            services.AddScoped<IPostService, PostService>();
             services.AddDbContext<UserDbContext>(options =>
             {
                 options.UseMySQL("Server=localhost;Database=CarDeal;Uid=root;Pwd=Lubodinamo04;");

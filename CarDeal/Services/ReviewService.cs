@@ -101,7 +101,7 @@ namespace CarDeal.Services
         public List<ReviewDTO> GetUserReviewsName(int id, string SearchPrase)
         {
             return dbContext.Reviews
-                .Where(p => p.UserId == id && p.Name == SearchPrase)
+                .Where(p => p.UserId == id && p.Name.Contains(SearchPrase))
                 .Select(p => ToDto(p))
                 .ToList<ReviewDTO>();
         }

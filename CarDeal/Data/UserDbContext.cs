@@ -12,6 +12,7 @@ namespace CarDeal.Data
     public class UserDbContext : IdentityDbContext<User, IdentityRole<int>, int>
     {
         public DbSet<Review> Reviews { get; set; }
+        public DbSet<Post> Posts { get; set; }
         public UserDbContext(DbContextOptions options) : base(options)
         {
 
