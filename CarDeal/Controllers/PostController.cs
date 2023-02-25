@@ -1,6 +1,8 @@
 ﻿using CarDeal.Models;
 using CarDeal.Models.DTOs;
 using CarDeal.Services;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -14,6 +16,11 @@ namespace CarDeal.Controllers
     {
         private IPostService postService;
         private UserManager<User> userManager;
+        private readonly IWebHostEnvironment _webHostEnvironment;
+        public IFormFile MainImage { get; set; }
+        public IFormFile Image1 { get; set; }
+
+        //string tempName;
         public PostController(IPostService postService, UserManager<User> userManager)
         {
             this.postService = postService;
@@ -38,14 +45,14 @@ namespace CarDeal.Controllers
             return View();
         }
 
-        public async Task<IActionResult> ShowSearchResultBrand(String SearchPhrase)
+        public async Task<IActionResult> ShowSearchResultCarBrand(String SearchPhrase)
         {
             User user = await userManager.GetUserAsync(User).ConfigureAwait(false);
             List<PostDTO> posts = postService.GetUserPostsBrand(user.Id, SearchPhrase);
             return View(posts);
         }
 
-        public async Task<IActionResult> ShowSearchResultModel(String SearchPhrase)
+        public async Task<IActionResult> ShowSearchResultCarModel(String SearchPhrase)
         {
             User user = await userManager.GetUserAsync(User).ConfigureAwait(false);
             List<PostDTO> posts = postService.GetUserPostsModel(user.Id, SearchPhrase);
@@ -102,32 +109,6 @@ namespace CarDeal.Controllers
             User user = await userManager.GetUserAsync(User).ConfigureAwait(false);
 
             return View(postService.GetPostSortRegionDesc(user.Id));
-        }
-
-        public async Task<IActionResult> SortMainImage()
-        {
-            User user = await userManager.GetUserAsync(User).ConfigureAwait(false);
-
-            return View(postService.GetPostSortMainImage(user.Id));
-        }
-        public async Task<IActionResult> SortMainImageDesc()
-        {
-            User user = await userManager.GetUserAsync(User).ConfigureAwait(false);
-
-            return View(postService.GetPostSortMainImageDesc(user.Id));
-        }
-
-        public async Task<IActionResult> SortFrontImage()
-        {
-            User user = await userManager.GetUserAsync(User).ConfigureAwait(false);
-
-            return View(postService.GetPostSortFrontImage(user.Id));
-        }
-        public async Task<IActionResult> SortFrontImageDesc()
-        {
-            User user = await userManager.GetUserAsync(User).ConfigureAwait(false);
-
-            return View(postService.GetPostSortFrontImageDesc(user.Id));
         }
 
         public async Task<IActionResult> SortPrice()

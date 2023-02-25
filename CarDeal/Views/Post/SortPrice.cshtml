@@ -1,0 +1,79 @@
+﻿@using Microsoft.AspNetCore.Identity;
+@using CarDeal.Data;
+@using CarDeal.Models.DTOs;
+@model List<PostDTO>
+@inject SignInManager<User> signinManager;
+
+@{
+    ViewData["Title"] = "SortCarBrand";
+}
+<h1>These are the posts sorted by Price </h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                <a class="btn btn-group-lg" asp-action="SortCarBrandDesc"> <strong> CarBrand  </strong> </a>
+            </th>
+            <th>
+                <a class="btn btn-group-lg" asp-action="SortCarModelDesc"> <strong>CarModel</strong> </a>
+            </th>
+            <th>
+                <a class="btn btn-group-lg" asp-action="SortDescribtionDesc"> <strong>Describtion</strong> </a>
+            </th>
+            <th>
+                <a class="btn btn-group-lg" asp-action="SortCategoryDesc"> <strong>Category</strong> </a>
+            </th>
+            <th>
+                <a class="btn btn-group-lg" asp-action="SortRegionDesc"> <strong>Region</strong> </a>
+            </th>
+          
+            <th>
+                <a class="btn btn-group-lg" asp-action="SortPriceDesc"> <strong>Price</strong> </a>
+            </th>
+            <th>
+                <a class="btn btn-group-lg" asp-action="SortPublishDesc"> <strong>Publish</strong> </a>
+            </th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CarBrand)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CarModel)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Describtion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Category)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Region)
+            </td>
+           
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Publish)
+            </td>
+
+        </tr>
+    }
+        </tbody>
+    </table>
+@if (this.signinManager.IsSignedIn(User))
+{
+    <a class="btn btn-outline-dark" asp-area="" asp-controller="Post" asp-action="UserPosts">Back to List</a>
+}
+else
+{
+    <p>Login to create a post</p>
+    <a class="btn btn-primary" asp-controller="Account" asp-action="Login">Login</a>
+}

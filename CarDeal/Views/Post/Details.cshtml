@@ -1,0 +1,80 @@
+﻿@using CarDeal.Models.DTOs;
+@model PostDTO;
+
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Post</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            CarBrand
+        </dt>
+        <dd class="col-sm-10">
+            @Model.CarBrand
+        </dd>
+        <dt class="col-sm-2">
+            CarModel
+        </dt>
+        <dd class="col-sm-10">
+            @Model.CarModel
+
+        </dd>
+        <dt class="col-sm-2">
+            Describtion
+        </dt>
+        <dd class="col-sm-10">
+            @Model.Describtion
+        </dd>
+        <dt class="col-sm-2">
+            Category
+        </dt>
+        <dd class="col-sm-10">
+            @Model.Category
+        </dd>
+        <dt class="col-sm-2">
+            Region
+        </dt>
+        <dd class="col-sm-10">
+            @Model.Region
+        </dd>
+        <dt class="col-sm-2">
+            MainImage
+        </dt>
+        <dd class="col-sm-10">
+            @Model.MainImage
+        </dd>
+        <dt class="col-sm-2">
+            FrontImage
+        </dt>
+        <dd class="col-sm-10">
+            @Model.FrontImage
+        </dd>
+        <dt class="col-sm-2">
+            Price
+        </dt>
+        <dd class="col-sm-10">
+            @Model.Price
+        </dd>
+        <dt class="col-sm-2">
+            Publish
+        </dt>
+        <dd class="col-sm-10">
+            @Model.Publish
+
+        </dd>
+        <dt class="col-sm-2">
+            EndDate
+        </dt>
+    </dl>
+</div>
+
+<div>
+    <a class="btn btn-outline-warning" asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+    <a class="btn btn-outline-dark" asp-action="UserPosts">Back to List</a>
+</div>
