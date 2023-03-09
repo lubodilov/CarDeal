@@ -34,9 +34,8 @@ namespace CarDeal
             services.AddScoped<IReviewService, ReviewService>();
             services.AddScoped<IPostService, PostService>();
             services.AddDbContext<UserDbContext>(options =>
-            {
-                options.UseMySQL("Server=localhost;Database=CarDeal;Uid=root;Pwd=Lubodinamo04;");
-            });
+                options.UseSqlServer(
+                    Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddIdentity<User, IdentityRole<int>>(opt =>
             {
