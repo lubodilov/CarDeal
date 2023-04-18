@@ -35,10 +35,6 @@ namespace CarDeal.Services
         public void Create(Post post, User user)
         {
             post.User = user;
-            SaveImg(MainImage);
-            post.MainImage = tempName;
-            SaveImg(Image1);
-            post.FrontImage = tempName;
             dbContext.Posts.Add(post);
             dbContext.SaveChanges();
         }
@@ -302,26 +298,7 @@ namespace CarDeal.Services
                 .ToList<PostDTO>();
         }
 
-        public async void SaveImg(IFormFile formFile)
-        {
-
-            if (formFile == null)
-            {
-                tempName = null;
-            }
-            else
-            {
-                string webroot = _webHostEnvironment.WebRootPath;
-                string fname = Path.GetFileNameWithoutExtension(formFile.FileName) + DateTime.Now.ToString("yymmssfff");
-                string fext = Path.GetExtension(formFile.FileName);
-                string ffname = Path.Combine(webroot + "/images/" + Path.Combine(fname + fext));
-                tempName = "images/" + Path.Combine(fname + fext);
-                using (var fileStream = new FileStream(ffname, FileMode.Create))
-                {
-                    await formFile.CopyToAsync(fileStream);
-                }
-            }
-        }
+        
         private static PostDTO ToDto(Post t)
         {
             PostDTO post = new PostDTO();

@@ -7,8 +7,11 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using CarDeal.Data;
+
 
 namespace CarDeal.Controllers
 {
@@ -16,15 +19,16 @@ namespace CarDeal.Controllers
     {
         private IPostService postService;
         private UserManager<User> userManager;
-        private readonly IWebHostEnvironment _webHostEnvironment;
-        public IFormFile MainImage { get; set; }
-        public IFormFile Image1 { get; set; }
-
+        private readonly IWebHostEnvironment webHostEnvironment;
+        private readonly UserDbContext context;
+        string tempName;
         //string tempName;
-        public PostController(IPostService postService, UserManager<User> userManager)
+        public PostController(IPostService postService, UserManager<User> userManager, UserDbContext _context, IWebHostEnvironment _webHostEnvironment)
         {
             this.postService = postService;
             this.userManager = userManager;
+            this.context = _context;
+            this.webHostEnvironment = _webHostEnvironment;
         }
 
         public IActionResult Index()
@@ -195,7 +199,7 @@ namespace CarDeal.Controllers
             return View();
         }
         [HttpPost]
-        public async Task<IActionResult> CreateAsync(Post post)
+        public async Task<IActionResult> CreateAsync(Post post, IFormFile mainImg, IFormFile frontImg)
         {
             User user = await userManager.GetUserAsync(User).ConfigureAwait(false);
             if (user is null)
@@ -206,6 +210,10 @@ namespace CarDeal.Controllers
             {
                 return View();
             }
+            SaveImg(mainImg);
+            post.MainImage = tempName;
+            SaveImg(frontImg);
+            post.FrontImage = tempName;
             postService.Create(post, user);
             return RedirectToAction(nameof(UserPosts));
         }
@@ -244,5 +252,29 @@ namespace CarDeal.Controllers
         {
             return View(postService.GetById(id));
         }
+
+        public async void SaveImg(IFormFile formFile)
+        {
+
+            if (formFile == null)
+            {
+                tempName = null;
+            }
+            else
+            {
+                string webroot = webHostEnvironment.WebRootPath;
+                string fname = Path.GetFileNameWithoutExtension(formFile.FileName) + DateTime.Now.ToString("yymmssfff");
+                string fext = Path.GetExtension(formFile.FileName);
+                string ffname = Path.Combine(webroot + "/images/" + Path.Combine(fname + fext));
+                tempName = "images/" + Path.Combine(fname + fext);
+                using (var fileStream = new FileStream(ffname, FileMode.Create))
+                {
+                    await formFile.CopyToAsync(fileStream);
+                }
+            }
+
+        }
+
+
     }
 }
