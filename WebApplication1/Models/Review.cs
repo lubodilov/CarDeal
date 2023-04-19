@@ -23,7 +23,7 @@ namespace CarDeal.Models
 
         public DateTime Publish { get; set; }
 
-        //[ForeignKey("Post")]
+        [ForeignKey("Post")]
         public int PostId { get; set; }
         public Post Post { get; set; }
 

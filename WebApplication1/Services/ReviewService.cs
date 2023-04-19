@@ -26,9 +26,18 @@ namespace CarDeal.Services
         //
         public void Create(Review review, User user)
         {
-            review.User = user;
-            dbContext.Reviews.Add(review);
-            dbContext.SaveChanges();
+            try
+            {
+                review.User = user;
+                dbContext.Reviews.Add(review);
+                dbContext.SaveChanges();
+            }
+            catch (DbUpdateException ex)
+            {
+                // Log the inner exception details
+                Console.WriteLine($"Error: {ex.InnerException?.Message}");
+                throw;
+            }
         }
         //
         //Summary:

@@ -23,6 +23,7 @@ namespace CarDeal.Data
             builder.Entity<Review>()
                 .HasOne(r => r.Post)
                 .WithMany()
+                .HasForeignKey(r => r.PostId)
                 .OnDelete(DeleteBehavior.Restrict);
 
             base.OnModelCreating(builder);

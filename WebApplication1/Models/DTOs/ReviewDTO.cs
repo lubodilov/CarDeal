@@ -26,6 +26,9 @@ namespace CarDeal.Models.DTOs
 
         public Post Post { get; set; }
 
+        //public int PostId { get; set; }
+
+
         public ReviewDTO()
         {
                 

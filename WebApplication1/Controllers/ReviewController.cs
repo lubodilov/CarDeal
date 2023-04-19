@@ -160,6 +160,8 @@ namespace CarDeal.Controllers
             {
                 return View();
             }
+            //review.PostId = 4;
+            //review.PostId = 4;
             reviewService.Create(review, user);
             return RedirectToAction(nameof(UserReviews));
         }
