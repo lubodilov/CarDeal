@@ -17,5 +17,15 @@ namespace CarDeal.Data
         {
 
         }
+
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            builder.Entity<Review>()
+                .HasOne(r => r.Post)
+                .WithMany()
+                .OnDelete(DeleteBehavior.Restrict);
+
+            base.OnModelCreating(builder);
+        }
     }
 }

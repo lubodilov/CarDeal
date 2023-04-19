@@ -156,8 +156,11 @@ namespace CarDeal.Controllers
 
         public IActionResult Details(int id)
         {
-            PostDTO post = postService.GetDtoById(id);
-            return View(post);
+            ViewBag.post = postService.GetDtoById(id);
+            List<ReviewDTO> postReveiws = postService.GetPostsReviews(id);
+            //PostDTO post = postService.GetDtoById(id);
+
+            return View(postReveiws);
         }
         public IActionResult Edit()
         {

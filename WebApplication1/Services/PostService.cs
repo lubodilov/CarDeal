@@ -107,6 +107,15 @@ namespace CarDeal.Services
                 .Select(p => ToDto(p))
                 .ToList<PostDTO>();
         }
+
+        public List<ReviewDTO> GetPostsReviews(int id)
+        {
+            List<ReviewDTO> ans = dbContext.Reviews
+                .Where(p => p.PostId == id)
+                .Select(p => ToDto(p))
+                .ToList<ReviewDTO>();
+            return ans;
+        }
         //
         //Summary:
         //  Returns all posts having the given userId and Name
@@ -321,6 +330,26 @@ namespace CarDeal.Services
 
             return post;
         }
+        private static ReviewDTO ToDto(Review t)
+        {
+            ReviewDTO review = new ReviewDTO();
 
+            review.Id = t.Id;
+            review.Name = t.Name;
+            review.Describtion = t.Describtion;
+            review.Stars = t.Stars;
+            review.Publish = t.Publish;
+            if (t.User != null)
+            {
+                review.CreatedBy = $"{t.User.FirstName} {t.User.LastName}";
+                review.UserEmail = t.User.Email;
+            }
+            if(t.Post != null)
+            {
+                review.Post = t.Post;
+            }
+
+            return review;
+        }
     }
 }

@@ -23,6 +23,10 @@ namespace CarDeal.Models
 
         public DateTime Publish { get; set; }
 
+        //[ForeignKey("Post")]
+        public int PostId { get; set; }
+        public Post Post { get; set; }
+
 
         [ForeignKey("User")]
         public int UserId { get; set; }
@@ -33,7 +37,7 @@ namespace CarDeal.Models
 
         }
 
-        public Review(int id, string name, string describtion, string stars, DateTime publish, int userId, User user)
+        public Review(int id, string name, string describtion, string stars, DateTime publish, int userId, User user, Post post)
         {
             Id = id;
             Name = name;
@@ -42,6 +46,7 @@ namespace CarDeal.Models
             Publish = publish;
             UserId = userId;
             User = user;
+            Post = post;
         }
     }
 }

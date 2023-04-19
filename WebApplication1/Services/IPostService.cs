@@ -16,6 +16,7 @@ namespace CarDeal.Services
         void Create(Post actor, User user);
         List<PostDTO> GetAll();
         List<PostDTO> GetUserPosts(int id);
+        List<ReviewDTO> GetPostsReviews(int id);
         List<PostDTO> GetUserPostsBrand(int id, string SearchPrase);
         List<PostDTO> GetUserPostsModel(int id, string SearchPrase);
         List<PostDTO> GetPostSortCarBrand(int id);

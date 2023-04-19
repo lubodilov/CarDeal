@@ -24,12 +24,14 @@ namespace CarDeal.Models.DTOs
 
         public string UserEmail { get; set; }
 
+        public Post Post { get; set; }
+
         public ReviewDTO()
         {
                 
         }
 
-        public ReviewDTO(int id, string name, string describtion, string stars, DateTime publish, DateTime endDate, string createdBy, string userEmail)
+        public ReviewDTO(int id, string name, string describtion, string stars, DateTime publish, DateTime endDate, string createdBy, string userEmail, Post post)
         {
             Id = id;
             Name = name;
@@ -38,6 +40,7 @@ namespace CarDeal.Models.DTOs
             Publish = publish;
             CreatedBy = createdBy;
             UserEmail = userEmail;
+            Post = post;
         }
     }
 }

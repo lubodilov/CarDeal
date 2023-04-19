@@ -1,5 +1,5 @@
 ﻿@using CarDeal.Models.DTOs;
-@model PostDTO;
+@model List<ReviewDTO>;
 
 
 @{
@@ -16,65 +16,107 @@
             CarBrand
         </dt>
         <dd class="col-sm-10">
-            @Model.CarBrand
+            @ViewBag.post.CarBrand
         </dd>
         <dt class="col-sm-2">
             CarModel
         </dt>
         <dd class="col-sm-10">
-            @Model.CarModel
+            @ViewBag.post.CarModel
 
         </dd>
         <dt class="col-sm-2">
             Describtion
         </dt>
         <dd class="col-sm-10">
-            @Model.Describtion
+            @ViewBag.post.Describtion
         </dd>
         <dt class="col-sm-2">
             Category
         </dt>
         <dd class="col-sm-10">
-            @Model.Category
+            @ViewBag.post.Category
         </dd>
         <dt class="col-sm-2">
             Region
         </dt>
         <dd class="col-sm-10">
-            @Model.Region
+            @ViewBag.post.Region
         </dd>
         <dt class="col-sm-2">
             MainImage
         </dt>
         <dd class="col-sm-10">
-            <img src="~/@Model.MainImage" />
+            <img src="~/@ViewBag.post.MainImage" />
         </dd>
         <dt class="col-sm-2">
             FrontImage
         </dt>
         <dd class="col-sm-10">
-            <img src="~/@Model.FrontImage"/>
+            <img src="~/@ViewBag.post.FrontImage" />
         </dd>
         <dt class="col-sm-2">
             Price
         </dt>
         <dd class="col-sm-10">
-            @Model.Price
+            @ViewBag.post.Price
         </dd>
         <dt class="col-sm-2">
             Publish
         </dt>
         <dd class="col-sm-10">
-            @Model.Publish
+            @ViewBag.post.Publish
 
         </dd>
         <dt class="col-sm-2">
             EndDate
         </dt>
     </dl>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    <strong> Name  </strong> 
+                </th>
+                <th>
+                    <strong>Describtion</strong>
+                </th>
+                <th>
+                    <strong>Stars</strong>
+                </th>
+                <th>
+                    <strong>Publish</strong>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Describtion)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Stars)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Publish)
+                    </td>
+                    <td>
+                        <a class="btn btn-outline-warning" asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                        <a class="btn btn-outline-info" asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                        <a class="btn btn-outline-danger" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
 </div>
 
 <div>
-    <a class="btn btn-outline-warning" asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+    <a class="btn btn-outline-warning" asp-action="Edit" asp-route-id="@ViewBag.post.Id">Edit</a> |
     <a class="btn btn-outline-dark" asp-action="UserPosts">Back to List</a>
 </div>
