@@ -247,6 +247,11 @@ namespace CarDeal.Controllers
             {
                 return RedirectToAction(nameof(UserPosts));
             }
+            string webRoot = webHostEnvironment.WebRootPath + '/';
+            FileInfo MI = new FileInfo(webRoot + post.MainImage);
+            if (MI.Exists) { MI.Delete(); }
+            FileInfo FI = new FileInfo(webRoot + post.FrontImage);
+            if (FI.Exists) { FI.Delete(); }
             postService.Delete(id);
             return RedirectToAction(nameof(UserPosts));
         }
