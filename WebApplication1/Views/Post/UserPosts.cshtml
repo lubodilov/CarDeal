@@ -19,9 +19,6 @@
                 <a class="btn btn-group-lg" asp-action="SortCarModel"> <strong>CarModel</strong> </a>
             </th>
             <th>
-                <a class="btn btn-group-lg" asp-action="SortDescribtion"> <strong>Describtion</strong> </a>
-            </th>
-            <th>
                 <a class="btn btn-group-lg" asp-action="SortCategory"> <strong>Category</strong> </a>
             </th>
             <th>
@@ -45,9 +42,7 @@
             <td>
                 @Html.DisplayFor(modelItem => item.CarModel)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Describtion)
-            </td>
+           
             <td>
                 @Html.DisplayFor(modelItem => item.Category)
             </td>

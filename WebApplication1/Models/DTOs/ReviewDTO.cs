@@ -34,7 +34,7 @@ namespace CarDeal.Models.DTOs
                 
         }
 
-        public ReviewDTO(int id, string name, string describtion, string stars, DateTime publish, DateTime endDate, string createdBy, string userEmail, Post post)
+        public ReviewDTO(int id, string name, string describtion, string stars, DateTime publish, string createdBy, string userEmail, Post post)
         {
             Id = id;
             Name = name;

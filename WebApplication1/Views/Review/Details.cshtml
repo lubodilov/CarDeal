@@ -6,6 +6,24 @@
     ViewData["Title"] = "Details";
 }
 
+@{
+    string AddBreaksAfterNCharacters(string text, int n)
+    {
+        if (string.IsNullOrEmpty(text)) return string.Empty;
+
+        var stringBuilder = new System.Text.StringBuilder();
+        for (int i = 0; i < text.Length; i++)
+        {
+            stringBuilder.Append(text[i]);
+            if ((i + 1) % n == 0)
+            {
+                stringBuilder.Append("<br />");
+            }
+        }
+        return stringBuilder.ToString();
+    }
+}
+
 <h1>Details</h1>
 
 <div>
@@ -21,7 +39,8 @@
             Describtion
         </dt>
         <dd class="col-sm-10">
-            @Model.Describtion
+            @Html.Raw(AddBreaksAfterNCharacters(Model.Describtion, 135))
+
         </dd>
         <dt class="col-sm-2">
             Stars
@@ -37,9 +56,6 @@
             @Model.Publish
 
         </dd>
-        <dt class="col-sm-2">
-            EndDate
-        </dt>
     </dl>
 </div>
 

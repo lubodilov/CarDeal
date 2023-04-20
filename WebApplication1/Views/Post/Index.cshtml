@@ -7,7 +7,7 @@
 @{
     ViewData["Title"] = "Index";
 }
-<h1>Index</h1>
+<h1>ALl posts</h1>
 
 <table class="table">
     <thead>
@@ -18,9 +18,7 @@
             <th>
                 <strong>CarModel</strong>
             </th>
-            <th>
-                <strong>Describtion</strong>
-            </th>
+
             <th>
                 <strong>Category</strong>
             </th>
@@ -28,16 +26,13 @@
                 <strong>Region</strong>
             </th>
             <th>
-                <strong>MainImage</strong>
-            </th>
-            <th>
-                <strong>FrontImage</strong>
-            </th>
-            <th>
                 <strong>Price</strong>
             </th>
             <th>
                 <strong>Publish</strong>
+            </th>
+            <th>
+                <strong>Created By</strong>
             </th>
 
         </tr>
@@ -53,19 +48,10 @@
                 @Html.DisplayFor(modelItem => item.CarModel)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Describtion)
-            </td>
-            <td>
                 @Html.DisplayFor(modelItem => item.Category)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Region)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.MainImage)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.FrontImage)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Price)
@@ -73,11 +59,11 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Publish)
             </td>
-
             <td>
-                <a class="btn btn-outline-warning" asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a class="btn btn-outline-info" asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a class="btn btn-outline-danger" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                @Html.DisplayFor(modelItem => item.UserEmail)
+            </td>
+            <td>
+                <a class="btn btn-outline-info" asp-action="Details" asp-route-id="@item.Id">Details</a>
             </td>
         </tr>
         }

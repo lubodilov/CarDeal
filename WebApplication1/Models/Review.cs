@@ -19,6 +19,8 @@ namespace CarDeal.Models
         [StringLength(256, MinimumLength = 1)]
         public string Describtion { get; set; }
 
+        [Required]
+        [RegularExpression("^[1-5]$", ErrorMessage = "Stars must be a single digit between 1 and 5.")]
         public string Stars { get; set; }
 
         public DateTime Publish { get; set; }
