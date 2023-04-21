@@ -1,4 +1,4 @@
 ﻿@model Review
 <h1>Are you sure you want to delete the Review?</h1>
 <a asp-action="ConfirmDelete" asp-route-id="@Model.Id" asp-controller="Review" class="btn btn-outline-danger">Delete</a>
-<a asp-action="UserReviews" asp-controller="ToDO" class="btn btn-outline-light">Cancel</a>
+<a asp-action="UserReviews" asp-controller="Review" class="btn btn-outline-light">Cancel</a>
