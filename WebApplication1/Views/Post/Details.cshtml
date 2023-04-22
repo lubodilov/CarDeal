@@ -52,18 +52,6 @@
             @ViewBag.post.Price
         </dd>
         <dt class="col-sm-2">
-            MainImage
-        </dt>
-        <dd>
-            <img src="~/@ViewBag.post.MainImage" />
-        </dd>
-        <dt class="col-sm-2">
-            FrontImage
-        </dt>
-        <dd>
-            <img src="~/@ViewBag.post.FrontImage" />
-        </dd>
-        <dt class="col-sm-2">
             Describtion
         </dt>
         <dd class="col-sm-10">
@@ -83,15 +71,25 @@
             @ViewBag.post.Publish
 
         </dd>
+        <dt class="col-sm-2">
+            MainImage
+        </dt>
+        <dd>
+            <img src="~/@ViewBag.post.MainImage" />
+        </dd>
+        <dt class="col-sm-2">
+            FrontImage
+        </dt>
+        <dd>
+            <img src="~/@ViewBag.post.FrontImage" />
+        </dd>
+
     </dl>
     <table class="table">
         <thead>
             <tr>
                 <th>
                     <strong> Name  </strong>
-                </th>
-                <th>
-                    <strong>Describtion</strong>
                 </th>
                 <th>
                     <strong>Stars</strong>
@@ -107,9 +105,6 @@
                 <tr>
                     <td>
                         @Html.DisplayFor(modelItem => item.Name)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Describtion)
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.Stars)
