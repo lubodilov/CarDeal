@@ -166,8 +166,10 @@ figure {
 }
 
 img {
-  vertical-align: middle;
-  border-style: none;
+    vertical-align: middle;
+    border-style: solid;
+    height: 200px;
+    max-width: 100%;
 }
 
 svg {
